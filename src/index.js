@@ -23,6 +23,11 @@ point.position.set(60, 0, 10); //点光源位置
 point.power = 10.;
 point.intensity = 3.;
 scene.add(point); //点光源添加到场景中
+var point2 = new THREE.SpotLight(0xffffff);
+point2.position.set(0, 20, 0);
+point2.intensity = 10;
+point2.angle = Math.PI / 4;
+scene.add(point2);
 var ambient = new THREE.AmbientLight(0xffffff);
 ambient.intensity = 5;
 scene.add(ambient);
@@ -42,6 +47,7 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
  */
 const loader = new GLTFLoader();
 loader.load(bench, function (gltf) {
+    gltf.scene.texture = new THREE.MeshPhongMaterial({ color: 0xffff66, depthWrite: false });
     gltf.scene.scale.set(0.05, 0.05, 0.05);
     scene.add(gltf.scene);
 }, undefined, function (error) {
